@@ -15,8 +15,8 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="#" class="text-2xl font-light">LA MICHELINE</a>
             <div class="hidden md:flex space-x-8 text-sm">
-                <a href="#" class="hover:text-gray-300 transition">Accueil</a>
-                <a href="#" class="hover:text-gray-300 transition">Menu</a>
+                <a href="../public/index.php" class="hover:text-gray-300 transition">Accueil</a>
+                <a href="../public/menu.php" class="hover:text-gray-300 transition">Menu</a>
                 <a href="#" class="hover:text-gray-300 transition">Réservations</a>
                 <a href="#" class="hover:text-gray-300 transition">Bons cadeaux</a>
                 <a href="#" class="hover:text-gray-300 transition">Le Chef</a>
@@ -59,10 +59,8 @@
             <p class="mb-8">La Micheline se veut être un lieu de passion, de création et de partage. Un lieu qui fait
                 son chemin tout naturellement pour offrir une parenthèse dans un quartier à grande vitesse.</p>
             <div class="space-y-4">
-                <a href="#"
-                    class="relative inline-block px-2 w-64 h-10 overflow-hidden rounded-md border-2 border-[#2f2c28] text-black font-medium text-[17px] leading-[2.5rem] tracking-wide cursor-pointer transition-colors duration-500 before:absolute before:bg-[#847560] before:h-[150px] before:w-[325px] before:rounded-full before:top-full before:left-full before:transition-all before:duration-700 hover:text-black hover:before:top-[-30px] hover:before:left-[-50px] active:before:bg-[#1a1a1a]">Découvrir
-                    nos menus</a>
-                <a href="#" class="relative inline-block px-2 w-64 h-10 overflow-hidden rounded-md border-2 border-[#2f2c28] text-black font-medium text-[17px] leading-[2.5rem] tracking-wide cursor-pointer transition-colors duration-500 before:absolute before:bg-[#847560] before:h-[150px] before:w-[325px] before:rounded-full before:top-full before:left-full before:transition-all before:duration-700 hover:text-black hover:before:top-[-30px] hover:before:left-[-50px] active:before:bg-[#1a1a1a]">Réserver une table</a>
+                <a href="#" class="relative inline-block px-2 w-64 h-10 overflow-hidden rounded-md border-[1px] border-[#2f2c28] text-black font-medium text-[17px] leading-[2.5rem] tracking-wide cursor-pointer transition-all duration-500 before:absolute before:bg-black hover:text-white before:h-[150px] before:w-[325px] before:rounded-full before:top-full before:left-full before:transition-all before:duration-700 hover:before:top-[-30px] hover:before:left-[-50px] active:before:bg-[#fff]">Découvrir nos menus</a>
+                <a href="#" class="relative inline-block px-2 w-64 h-10 overflow-hidden rounded-md border-[1px] border-[#2f2c28] text-black font-medium text-[17px] leading-[2.5rem] tracking-wide cursor-pointer transition-all duration-500 before:absolute before:bg-black before:h-[150px] before:w-[325px] before:rounded-full before:top-full before:left-full before:transition-all before:duration-700 hover:text-black hover:before:top-[-30px] hover:before:left-[-50px] active:before:bg-[#1a1a1a]">Réserver une table</a>
             </div>
         </div>
     </section>
