@@ -106,6 +106,54 @@
         </div>
     </section>
 
+    <div class="max-w-7xl mx-auto px-4 py-24">
+  <div class="grid md:grid-cols-3 gap-8">
+    <!-- Menu Card 1 -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <div class="relative h-64">
+        <button class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white hover:bg-black/70 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white hover:bg-black/70 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+        <img src="/placeholder.svg?height=400&width=600" alt="Menu dégustation" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center">
+          <h3 class="text-white text-2xl font-light">DÉCOUVRIR</h3>
+        </div>
+        <div class="absolute bottom-0 w-full bg-black text-white p-4">
+          <p class="text-xl font-light">135.00 CHF <span class="text-sm">par personne</span></p>
+        </div>
+      </div>
+      <div class="p-6 space-y-4">
+        <span class="inline-block px-3 py-1 border border-gray-200 rounded-full text-sm">Gastronomie</span>
+        <h4 class="text-xl font-medium">Menu dégustation en 5 temps</h4>
+        <p class="text-gray-600 text-sm">
+          Laissez vous surprendre par le Chef Andrés Arocena et découvrez son menu dégustation en 5 temps, sa meilleure manière pour vous faire partager sa cuisine, ses créations du moment et ses coups de coeur
+        </p>
+        <div class="flex items-center gap-2 text-sm text-gray-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          Minimum 1 personne(s)
+        </div>
+        <div class="flex justify-between pt-4">
+          <button class="px-6 py-2 border border-black hover:bg-black hover:text-white transition-colors">
+            Offrir
+          </button>
+          <button class="px-6 py-2 bg-black text-white hover:bg-gray-800 transition-colors">
+            En savoir plus
+          </button>
+        </div>
+      </div>
+    </div>
+
+    
+
 
     <!-- footer -->
     <footer class="bg-black text-white py-16">
