@@ -664,7 +664,7 @@ video {
 }
 
 .w-\[90\$\] {
-  width: 90$;
+  width: 90%;
 }
 
 .w-\[90\%\] {
@@ -1110,7 +1110,7 @@ video {
 
 .before\:bg-\[\#\#e5b400\]::before {
   content: var(--tw-content);
-  background-color: ##e5b400;
+  background-color: #e5b400;
 }
 
 .before\:bg-\[\#e5b400\]::before {
