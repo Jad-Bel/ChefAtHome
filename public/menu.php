@@ -447,7 +447,7 @@
                 <span class="text-white/70">Gault&Millau</span>
             </div>
         </div>
-    </footer>
+    </footer>\
 </body>
 
 </html>

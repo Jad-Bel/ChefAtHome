@@ -100,40 +100,7 @@
         </div>
     </div>
 
-    <!-- footer -->
-    <footer class="bg-black text-white py-16">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid md:grid-cols-3 gap-12 text-center">
-                <!-- Address -->
-                <div>
-                    <h4 class="text-lg mb-4">ADRESSE</h4>
-                    <p class="text-sm">Avenue de la Gare des</p>
-                    <p class="text-sm">Eaux-Vives 3, 1207</p>
-                    <p class="text-sm">Genève</p>
-                </div>
 
-                <!-- Hours -->
-                <div>
-                    <h4 class="text-lg mb-4">HORAIRES</h4>
-                    <p class="text-sm">Lundi et Dimanche : Fermé</p>
-                    <p class="text-sm">Mardi au Samedi : 12:00 - 14:00 / 19:00 - 22:00</p>
-                </div>
-
-                <!-- Contact -->
-                <div>
-                    <h4 class="text-lg mb-4">CONTACT</h4>
-                    <p class="text-sm">Tél : 022 840 03 38</p>
-                    <p class="text-sm">Mail : info@lamicheline.ch</p>
-                </div>
-            </div>
-
-            <!-- Certifications -->
-            <div class="flex justify-center space-x-8 mt-12">
-                <span class="text-white/70">Guide MICHELIN</span>
-                <span class="text-white/70">Gault&Millau</span>
-            </div>
-        </div>
-    </footer>
 </body>
 
 </html>
