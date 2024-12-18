@@ -17,10 +17,10 @@
             <div class="hidden md:flex space-x-8 text-sm">
                 <a href="../public/index.php" class="hover:text-gray-300 transition">Accueil</a>
                 <a href="../public/menu.php" class="hover:text-gray-300 transition">Menu</a>
-                <a href="#" class="hover:text-gray-300 transition">Réservations</a>
+                <a href="../public/reservation.php" class="hover:text-gray-300 transition">Réservations</a>
                 <a href="#" class="hover:text-gray-300 transition">Bons cadeaux</a>
                 <a href="#" class="hover:text-gray-300 transition">Le Chef</a>
-                <a href="#" class="hover:text-gray-300 transition">Presse</a>
+                <a href="../public/authentification.php" class="hover:text-gray-300 transition">Sign-up</a>
             </div>
             <button id="burger-menu" class="md:hidden">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
