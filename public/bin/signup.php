@@ -5,7 +5,7 @@
     $username = "root";
     $passwrd = "";
     $database = "lamicheline_db";
-                            
+
     $connect = mysqli_connect($servername, $username, $passwrd, $database);
 
     if (!$connect) {
@@ -25,15 +25,17 @@
             $user_role_id = $user['role_id'];
 
             $sql_role = "SELECT * FROM role WHERE role_id = '$user_role_id'";
-            $result_role = $connect->query($sql);
+            $result_role = $connect->query($sql_role);
 
             if ($result_role->num_rows > 0) {
                 $role = $result_role->fetch_assoc();
 
                 if ($role['role_id'] == 2) {
-                    header("location: /LA-MICHELINE/public/reservationAdmin.php");
+                    header("location: ../reservationAdmin.php");
+                    exit;
                 } elseif ($role['role_id'] == 1) {
-                    header("location: /LA-MICHELINE/public/index.php");
+                    header("location: ../index.php");
+                    exit;
                 }
             }
         }

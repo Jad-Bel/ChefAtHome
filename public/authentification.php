@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div>
-                    <form novalidate="" action="../public/bin/signup.php" class="mb-4">
+                    <form method="POST" action="../public/bin/signup.php" class="mb-4">
                         <div class="grid gap-4">
                             <div class="grid gap-2">
                                 <label class="text-black" for="email">Email</label><input
