@@ -58,11 +58,11 @@ function validateSignInForm () {
             title: "Invalid email!",
             text: "Please enter a valid email address",
         });
-    } else if (!password.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)) {
+    } else if (!password.value.match(/^[a-zA-Z0-9./,]{6,}$/)) {
         Swal.fire({
             icon: "error",
             title: "Invalid password!",
-            text: "Must have at least 8 characters, one uppercase, one lowercase, one digit, and one special character",
+            text: "Must have at least 6 characters, one digit, and one special character",
         });
     }
 }
@@ -84,11 +84,11 @@ function validateSignUpForm () {
             title: "Invalid email!",
             text: "Please enter a valid email address",
         });
-    } else if (!password.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)) {
+    } else if (!password.value.match(/^[a-zA-Z0-9./,]{6,}$/)) {
         Swal.fire({
             icon: "error",
             title: "Invalid password!",
-            text: "Must have at least 8 characters, one uppercase, one lowercase, one digit, and one special character",
+            text: "Must have at least 6 characters, one digit, and one special character",
         });
     }
 }
