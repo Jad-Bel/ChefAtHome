@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,7 +70,7 @@
                     </div>
                 </div>
                 <div>
-                    <form novalidate="" class="mb-4">
+                    <form novalidate="" action="../public/bin/signup.php" class="mb-4">
                         <div class="grid gap-4">
                             <div class="grid gap-2">
                                 <label class="text-white" for="email">Email</label><input
@@ -80,8 +83,7 @@
                                     name="password" />
                             </div>
                             <form class="pb-2">
-                                <input type="hidden" name="provider" value="google" /><button class="flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-zinc-800 bg-none hover:bg-accent hover:text-accent-foreground h-10 px-4 w-full text-white py-6 hover:bg-white hover:text-black duration-700"
-                                    >
+                                <input type="hidden" name="provider" value="google" /><button class="flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-zinc-800 bg-none hover:bg-accent hover:text-accent-foreground h-10 px-4 w-full text-white py-6 hover:bg-white hover:text-black duration-700">
                                     <span class="mr-2"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
                                             version="1.1" x="0px" y="0px" viewBox="0 0 48 48" enable-background="new 0 0 48 48"
                                             class="h-5 w-5" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -125,26 +127,31 @@
                     </div>
                 </div>
                 <div>
-                    <form novalidate="" class="mb-4">
+                    <form novalidate="" action="../public/bin/signin.php" class="mb-4">
                         <div class="grid gap-8">
                             <div class="grid gap-2">
-                                <div class="flex gap-2 border h-40">
+                                <div class="flex flex-col gap-4">
+                                    <div class="flex gap-2 h-40">
+                                        <label class="text-black" for="firstName">
+                                            <input id="firstName" class="mr-2.5  h-full min-h-[44px] w-full border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black" placeholder="First-name" type="Firstname" autocapitalize="none" autocomplete="" autocorrect="off" name="firstName" />
+                                        </label>
+                                        
+                                        <label class="text-black" for="LastName">
+                                            <input id="lastName" class="mr-2.5 h-full min-h-[44px] w-full border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black" placeholder="Last-name" type="LastName" autocapitalize="none" autocomplete="" autocorrect="off" name="LastName" />
+                                        </label>
+                                    </div>
                                     
-                                    <label class="text-white" for="firstName">
-                                        <input id="firstName" class="mr-2.5 mb-5 h-full min-h-[44px] w-full border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black" placeholder="First-name" type="Firstname" autocapitalize="none" autocomplete="" autocorrect="off" name="firstName" />
+                                    <label class="text-black" for="Adress">
+                                        <input id="Adress" class="h-full min-h-[44px] w-full border bg-zinc-950 text-black border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black" placeholder="Last-name" type="LastName" autocapitalize="none" autocomplete="" autocorrect="off" name="LastName" />
                                     </label>
-                                    
-                                    <label class="text-white" for="LastName">
-                                        <input id="lastName" class="mr-2.5 mb-5 h-full min-h-[44px] w-full border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black" placeholder="Last-name" type="LastName" autocapitalize="none" autocomplete="" autocorrect="off" name="LastName" />
-                                    </label>
-
                                 </div>
 
-                                <label class="text-white" for="email">Email</label><input
+
+                                <label class="text-black" for="email"></label><input
                                     class="email mr-2.5 mb-2 h-full min-h-[44px] w-full border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black"
                                     placeholder="name@example.com" type="email" autocapitalize="none"
                                     autocomplete="email" autocorrect="off" name="email" /><label
-                                    class="password text-zinc-950 mt-2 dark:text-white" for="password">Password</label><input
+                                    class="password text-zinc-950 mt-2 dark:text-white" for="password"></label><input
                                     placeholder="Password" type="password" autocomplete="current-password"
                                     class="mr-2.5 mb-2 h-full min-h-[44px] w-full border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black"
                                     name="password" />
