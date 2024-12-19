@@ -189,7 +189,7 @@
         </div>
     </div>
 
-<!-- <script src="../public/JS/authentification.js"></script> -->
+<script src="../public/JS/authentification.js"></script>
 <script src="../public/JS/header.js"></script>
 </body>
 
