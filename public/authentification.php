@@ -1,5 +1,8 @@
 
-
+<?php 
+// include "../public/bin/connect.php";
+// include "../public/bin/signup.php";
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,13 +76,13 @@
                     <form novalidate="" action="../public/bin/signup.php" class="mb-4">
                         <div class="grid gap-4">
                             <div class="grid gap-2">
-                                <label class="text-white" for="email">Email</label><input
+                                <label class="text-black" for="email">Email</label><input
                                     class="email mr-2.5 mb-2 h-full min-h-[44px] w-full border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black"
                                     placeholder="name@example.com" type="email" autocapitalize="none"
                                     autocomplete="email" autocorrect="off" name="email" /><label
                                     class="text-zinc-950 mt-2 dark:text-white" for="password">Password</label><input
                                     placeholder="Password" type="password" autocomplete="current-password"
-                                    class="password mr-2.5 mb-2 h-full min-h-[44px] w-full border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black"
+                                    class="password mr-2.5 mb-2 h-full min-h-[44px] w-full border bg-zinc-950 text-black border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black"
                                     name="password" />
                             </div>
                             <form class="pb-2">
@@ -186,7 +189,7 @@
         </div>
     </div>
 
-<script src="../public/JS/authentification.js"></script>
+<!-- <script src="../public/JS/authentification.js"></script> -->
 <script src="../public/JS/header.js"></script>
 </body>
 
