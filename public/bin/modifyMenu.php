@@ -15,26 +15,13 @@
             $sql = "SELECT * FROM menu WHERE menu_id = '$menu_id'";
             $result = $connect->query($sql);
 
-            if ($result && $row = $result->fetch_assoc()) {
+            if ($row = $result->fetch_assoc()) {
                 $menu_name = $row['menu_nom'];
                 $price = $row['price'];
                 $description = $row['description'];
             } else {
                 $errorMessage = "Menu not found";
             }
-            // if (!$result) {
-            //     $errorMessage = "Invalid query " . $connect->error;
-            // }
-
-            // $row = $result->fetch_assoc();
-            // $menu_name = $row['menu_nom'];
-            // $price = $row['price'];
-            // $description = $row['description'];
-
-            // if (!$row) {
-            //     header ("location:");
-            //     exit;
-            // }
     }
 
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -43,7 +30,7 @@
         $price = $_POST['price'];
         $description = $_POST['description'];
     
-        if (empty($menu_name) || empty($price) || empty($description)) {
+        if (empty($menu_name) || empty($price)) {
             $errorMessage = "All fields are required";
         }
 
@@ -188,7 +175,7 @@
                         <h2 class="text-xl font-semibold">Modify Menu</h2>
                     </div>
                     <div class="p-6">
-                        <form class="space-y-6" method="POST" action="../public/bin/addMenu.php">
+                        <form class="space-y-6" method="POST" action="../menusAdmin.php">
                             <?php 
                                 if (!empty($errorMessage)) {
                                     echo "
@@ -196,35 +183,38 @@
                                         <strong>$errorMessage</strong>
                                         </div>
                                     ";
-                                    // $menu_name = $price = $description = "";
                                 } elseif (!empty($succesMessage)) {
                                     echo "
                                     <div class=\"bg-green-500 mb-4 flex items-center justify-center border-2 border-green-300 rounded-lg p-1\">
                                         <strong>$succesMessage</strong>
                                     </div>
                                     ";
-                                    // $menu_name = $price = $description = "";
                                 }
                             ?>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700" for="menuName">Menu Name</label>
-                                <input type="text" name="menuName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <input type="text" value="<?php echo $menu_name ?>" name="menuName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700" for="menuPrice">Price (EUR)</label>
-                                <input type="number" name="menuPrice" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <input type="number" value="<?php echo $price ?>" name="menuPrice" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700" for="menuDescription">Description</label>
-                                <textarea rows="3" name="menuDescription" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                                <textarea rows="3" value="<?php echo $description ?>" name="menuDescription" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
                             </div>
                             
                             <div class="flex justify-end space-x-3">
-                                <a href="../menusAdmin.php" class="px-4 py-2 bg-white text-black hover:text-white hover:bg-zinc-700 hover:transition-all duration-500 ">
-                                    Save Menu
+                                <a href="../menusAdmin.php" class="px-4 py-2 bg-zinc-700 text-white hover:text-black hover:bg-white hover:transition-all duration-500 ">
+                                    cancel
                                 </a>
+                                
+                                <button class="px-4 py-2 bg-white text-black hover:text-white hover:bg-zinc-700 hover:transition-all duration-500 ">
+                                    Modify Menu
+                                </button>
+
                             </div>
                         </form>
                     </div>

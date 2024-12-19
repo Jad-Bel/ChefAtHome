@@ -119,7 +119,7 @@ require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="../public/bin/modifyMenu.php?menu_id=<?= $value['menu_id']?>" class="text-blue-600 p-2 hover:text-white hover:bg-indigo-600 hover:transition-all duration-500 mr-2">Edit</a>
-                                        <a href="#" class="text-red-600 p-2 hover:text-white hover:bg-red-600 hover:transition-all duration-500">Delete</a>
+                                        <a href="../public/bin/deleteMenu.php?menu_id=<?= $value['menu_id'] ?>" class="text-red-600 p-2 hover:text-white hover:bg-red-600 hover:transition-all duration-500">Delete</a>
                                     </td>
                                 </tr>
                                 <?php } ?>
@@ -135,7 +135,7 @@ require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
                         <h2 class="text-xl font-semibold">Add New Menu</h2>
                     </div>
                     <div class="p-6">
-                        <form class="space-y-6" method="POST" action="../public/bin/addMenu.php">
+                        <form class="space-y-6" method="POST" action="../public/menusAdmin.php">
                             <input type="hidden" name="menu_id" value="<?= $menu_id ?>">
 
                             <?php 
@@ -171,9 +171,10 @@ require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
                             </div>
                             
                             <div class="flex justify-end space-x-3">
-                                <button type="submit" class="px-4 py-2 bg-white text-black hover:text-white hover:bg-zinc-700 hover:transition-all duration-500 ">
-                                    Save Menu
-                                </button>
+                                    <button class="px-4 py-2 bg-white text-black hover:text-white hover:bg-zinc-700 hover:transition-all duration-500 ">
+                                        Save Menu
+                                    </button>
+
                             </div>
                         </form>
                     </div>
