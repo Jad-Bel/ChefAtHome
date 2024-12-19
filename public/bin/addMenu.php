@@ -25,6 +25,9 @@
             if (!$result) {
                 $errorMessage = "Invalid query " . $connect->error;
             }
+
+            $succesMessage = "Menu added successfully";
+            $menu_name = $price = $description = "";
         } while (false);
     }
 

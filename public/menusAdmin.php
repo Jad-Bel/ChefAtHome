@@ -105,13 +105,13 @@ require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
                                         echo "Invalid query: " . $connect->error;
                                     }
                                     
-                                    while ($row = $result->fetch_assoc()) {
+                                    foreach($result as $value) {
                                         
                                     
                                 ?>
                                 <tr class="hover:bg-zinc-100 hover:transition-all duration-500">
-                                    <td class="px-6 py-4 whitespace-nowrap"><?php echo $row=['menu_nom']; ?></td>
-                                    <td class="px-6 py-4 whitespace-nowrap"><?php echo $row=['price']; ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-black"><?= $value['menu_nom'] ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap "><?= $value['price'] ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 hover:bg-green-800 hover:text-green-100 hover:transition-all duration-500">
                                             Active
@@ -143,27 +143,29 @@ require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
                                         <strong>$errorMessage</strong>
                                         </div>
                                     ";
+                                    $menu_name = $price = $description = "";
                                 } elseif (!empty($succesMessage)) {
                                     echo "
                                     <div class=\"bg-green-500 mb-4 flex items-center justify-center border-2 border-green-300 rounded-lg p-1\">
                                         <strong>$succesMessage</strong>
                                     </div>
                                     ";
+                                    $menu_name = $price = $description = "";
                                 }
                             ?>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700" for="menuName">Menu Name</label>
-                                <input type="text" value="<?php echo $menu_name ?>" name="menuName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <input type="text" name="menuName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700" for="menuPrice">Price (EUR)</label>
-                                <input type="number" value="<?php echo $price ?>" name="menuPrice" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <input type="number" name="menuPrice" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700" for="menuDescription">Description</label>
-                                <textarea rows="3" value="<?php echo $description ?>" name="menuDescription" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                                <textarea rows="3" name="menuDescription" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
                             </div>
                             
                             <div class="flex justify-end space-x-3">
