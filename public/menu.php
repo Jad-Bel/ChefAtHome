@@ -415,7 +415,7 @@
     </section>
 
     <!-- footer -->
-    <footer class="bg-black text-white py-16">
+    <footer class="bg-black w-full text-white py-16">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-3 gap-12 text-center">
                 <!-- Address -->
@@ -447,7 +447,7 @@
                 <span class="text-white/70">Gault&Millau</span>
             </div>
         </div>
-    </footer>\
+    </footer>
 </body>
 
 </html>

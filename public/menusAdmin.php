@@ -118,19 +118,19 @@
                         <h2 class="text-xl font-semibold">Add New Menu</h2>
                     </div>
                     <div class="p-6">
-                        <form class="space-y-6">
+                        <form class="space-y-6" method="POST" action="../public/bin/addMenu.php">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Menu Name</label>
                                 <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                             </div>
-                            <div>
+                            <!-- <div>
                                 <label class="block text-sm font-medium text-gray-700">Type</label>
                                 <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                                     <option>5 temps</option>
                                     <option>6 temps</option>
                                     <option>Special</option>
                                 </select>
-                            </div>
+                            </div> -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Price (CHF)</label>
                                 <input type="number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">

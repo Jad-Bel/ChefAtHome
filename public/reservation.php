@@ -10,14 +10,14 @@
 
     <nav class="fixed w-full z-50 bg-black/90 px-4 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-light">LA MICHELINE</a>
+            <a href="../public/index.php" class="text-2xl font-light">LA MICHELINE</a>
             <div class="hidden md:flex space-x-8 text-sm">
-                <a href="#" class="hover:text-gray-300 transition">Accueil</a>
-                <a href="#" class="hover:text-gray-300 transition">Menu</a>
-                <a href="#" class="hover:text-gray-300 transition">Réservations</a>
+                <a href="../public/index.php" class="hover:text-gray-300 transition">Accueil</a>
+                <a href="../public/menu.php" class="hover:text-gray-300 transition">Menu</a>
+                <a href="../public/reservation.php" class="hover:text-gray-300 transition">Réservations</a>
                 <a href="#" class="hover:text-gray-300 transition">Bons cadeaux</a>
                 <a href="#" class="hover:text-gray-300 transition">Le Chef</a>
-                <a href="#" class="hover:text-gray-300 transition">Presse</a>
+                <a href="../public/authentification.php" class="hover:text-gray-300 transition">Sign up</a>
             </div>
             <button id="burger-menu" class="md:hidden">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -72,30 +72,10 @@
               class="w-full h-auto shadow-lg"
             />
           </div>
-
+    
       
       <!-- Reservations Widget Section -->
-      <section class="w-full mx-auto px-4 py-24 bg-[#f8f7ff] text-black">
-        <h1 class="text-3xl font-light text-center mb-8">RESERVATIONS</h1>
-        
-        <div class="text-center space-y-6 mb-12">
-          <p class="text-sm">
-            C'est avec plaisir que nous prendrons votre réservation afin de vous assurer une table lors de votre arrivée à La Micheline.
-          </p>
-          <p class="text-sm">
-            Pour les groupes de plus de 8 personnes, nous vous invitons à nous contacter par email à l'adresse 
-            <a href="mailto:info@lamicheline.ch" class="text-teal-700 hover:underline">info@lamicheline.ch</a> 
-            afin que nous puissions déterminer un menu pour l'ensemble de la tablée.
-          </p>
-          <p class="text-sm">
-            Veuillez noter que les réservations pour 5 personnes ou plus nécessitent une garantie bancaire. Cette mesure nous aide à mieux planifier notre service et à minimiser les impacts des annulations de dernière minute sur notre organisation.
-            Nous vous remercions de votre compréhension.
-          </p>
-          <p class="text-sm">
-            Au plaisir de vous accueillir au restaurant La Micheline !
-          </p>
-        </div>
-      
+      <div class="w-full mx-auto px-4 py-24 bg-[#f8f7ff] text-black">
         <!-- Reservation Form -->
         <div class="bg-[#f8f7ff] p-8 rounded-lg shadow-sm max-w-xl mx-auto text-black">
           <div class="text-center mb-6">
@@ -123,7 +103,8 @@
             Pour des questions d'organisation, nous vous remercions de bien vouloir respecter votre horaire de réservation :)
           </p>
         </div> 
-      <!-- </section> -->
+      </div>  
+    </section>
 
        <!-- footer -->
     <footer class="bg-black text-white py-16">
