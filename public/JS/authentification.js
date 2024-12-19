@@ -27,69 +27,71 @@ signupSwitchBtn.addEventListener('click', function () {
     console.log(2);
 })
 
-signInForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!validateSignInForm()) {
-        e.submit();
-    }
-})
+// signInForm.addEventListener('submit', function (e) {
+//     e.preventDefault();
+//     if (!validateSignInForm()) {
+//         e.submit();
+//     }
+// })
 
-function validateSignInForm () {
-    let isValid = true;
+// function validateSignInForm () {
+//     let isValid = true;
     
-    if (!firstNameInput.value.match(/^[A-Za-z]{2,}$/)) {
-        Swal.fire({
-            icon: "error",
-            title: "Invalid last-name",
-            text: "Enter a valid last-name",
-        });
-        console.log(1)
-        isValid = false;
-    } else if (!lastNameInput.value.match(/^[A-Za-z]{2,}$/)) {
-        Swal.fire({
-            icon: "error",
-            title: "Invalid last-name",
-            text: "Enter a valid last-name",
-        });
-        isValid = false;
-    } else if (!emailInput.value.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
-        Swal.fire({
-            icon: "error",
-            title: "Invalid email!",
-            text: "Please enter a valid email address",
-        });
-    } else if (!password.value.match(/^[a-zA-Z0-9./,]{6,}$/)) {
-        Swal.fire({
-            icon: "error",
-            title: "Invalid password!",
-            text: "Must have at least 6 characters, one digit, and one special character",
-        });
-    }
-}
+//     if (!firstNameInput.value.match(/^[A-Za-z]{2,}$/)) {
+//         Swal.fire({
+//             icon: "error",
+//             title: "Invalid last-name",
+//             text: "Enter a valid last-name",
+//         });
+//         console.log(1)
+//         isValid = false;
+//     } else if (!lastNameInput.value.match(/^[A-Za-z]{2,}$/)) {
+//         Swal.fire({
+//             icon: "error",
+//             title: "Invalid last-name",
+//             text: "Enter a valid last-name",
+//         });
+//         isValid = false;
+//     } 
+    // else if (!emailInput.value.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
+    //     Swal.fire({
+    //         icon: "error",
+    //         title: "Invalid email!",
+    //         text: "Please enter a valid email address",
+    //     });
+    // }
+//      else if (!password.value.match(/^[a-zA-Z0-9./,]{6,}$/)) {
+//         Swal.fire({
+//             icon: "error",
+//             title: "Invalid password!",
+//             text: "Must have at least 6 characters, one digit, and one special character",
+//         });
+//     }
+// }
 
 
-signUpForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!validateSignUpForm()) {
-        e.submit();
-    }
-})
+// signUpForm.addEventListener('submit', function (e) {
+//     e.preventDefault();
+//     if (!validateSignUpForm()) {
+//         e.submit();
+//     }
+// })
 
-function validateSignUpForm () {
-    let isValid = true;
+// function validateSignUpForm () {
+//     let isValid = true;
     
-    if (!emailInput.value.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
-        Swal.fire({
-            icon: "error",
-            title: "Invalid email!",
-            text: "Please enter a valid email address",
-        });
-    } else if (!password.value.match(/^[a-zA-Z0-9./,]{6,}$/)) {
-        Swal.fire({
-            icon: "error",
-            title: "Invalid password!",
-            text: "Must have at least 6 characters, one digit, and one special character",
-        });
-    }
-}
+//     if (!emailInput.value.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
+//         Swal.fire({
+//             icon: "error",
+//             title: "Invalid email!",
+//             text: "Please enter a valid email address",
+//         });
+//     } else if (!password.value.match(/^[a-zA-Z0-9./,]{6,}$/)) {
+//         Swal.fire({
+//             icon: "error",
+//             title: "Invalid password!",
+//             text: "Must have at least 6 characters, one digit, and one special character",
+//         });
+//     }
+// }
 

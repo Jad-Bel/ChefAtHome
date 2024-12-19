@@ -130,33 +130,33 @@
                     </div>
                 </div>
                 <div>
-                    <form novalidate="" action="../public/bin/signin.php" class="mb-4">
+                    <form method="POST" action="../public/bin/signin.php" class="mb-4">
                         <div class="grid gap-8">
                             <div class="grid gap-2">
                                 <div class="flex flex-col gap-4">
                                     <div class="flex gap-2 h-40">
                                         <label class="text-black" for="firstName">
-                                            <input id="firstName" class="mr-2.5  h-full min-h-[44px] w-full border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black" placeholder="First-name" type="Firstname" autocapitalize="none" autocomplete="" autocorrect="off" name="firstName" />
+                                            <input id="firstName" class="mr-2.5  h-full min-h-[44px] w-full border bg-zinc-950 text-black border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black" placeholder="First-name" type="Firstname" autocapitalize="none" autocomplete="" autocorrect="off" name="firstName" />
                                         </label>
                                         
                                         <label class="text-black" for="LastName">
-                                            <input id="lastName" class="mr-2.5 h-full min-h-[44px] w-full border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black" placeholder="Last-name" type="LastName" autocapitalize="none" autocomplete="" autocorrect="off" name="LastName" />
+                                            <input id="lastName" class="mr-2.5 h-full min-h-[44px] w-full border bg-zinc-950 text-black border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black" placeholder="Last-name" type="LastName" autocapitalize="none" autocomplete="" autocorrect="off" name="LastName" />
                                         </label>
                                     </div>
                                     
                                     <label class="text-black" for="Adress">
-                                        <input id="Adress" class="h-full min-h-[44px] w-full border bg-zinc-950 text-black border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black" placeholder="Last-name" type="LastName" autocapitalize="none" autocomplete="" autocorrect="off" name="LastName" />
+                                        <input id="Adress" class="h-full min-h-[44px] w-full border bg-zinc-950 text-black border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black" placeholder="Home Adresse" type="homeAdresse" autocapitalize="none" autocomplete="" autocorrect="off" name="adresse" />
                                     </label>
                                 </div>
 
 
                                 <label class="text-black" for="email"></label><input
-                                    class="email mr-2.5 mb-2 h-full min-h-[44px] w-full border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black"
+                                    class="email mr-2.5 mb-2 h-full min-h-[44px] w-full border bg-zinc-950 text-black border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black"
                                     placeholder="name@example.com" type="email" autocapitalize="none"
                                     autocomplete="email" autocorrect="off" name="email" /><label
                                     class="password text-zinc-950 mt-2 dark:text-white" for="password"></label><input
                                     placeholder="Password" type="password" autocomplete="current-password"
-                                    class="mr-2.5 mb-2 h-full min-h-[44px] w-full border bg-zinc-950 text-white border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black"
+                                    class="mr-2.5 mb-2 h-full min-h-[44px] w-full border bg-zinc-950 text-black border-zinc-800 px-4 py-3 text-sm font-medium placeholder:text-black focus:outline-0 dark:border-zinc-800 dark:bg-transparent dark:text-white dark:placeholder:text-black"
                                     name="password" />
                             </div>
                             <form class="pb-2">
@@ -189,8 +189,37 @@
         </div>
     </div>
 
-<script src="../public/JS/authentification.js"></script>
+<!-- <script src="../public/JS/authentification.js"></script> -->
 <script src="../public/JS/header.js"></script>
+<script>
+    const emailInput = document.querySelector('.email');
+const password = document.querySelector('.password');
+const signUpSub = document.querySelector('#signUpSubmit');
+
+const firstNameInput = document.querySelector('#firstName');
+const lastNameInput = document.querySelector('#lastName');
+const signInSub = document.querySelector('#signInSubmit')
+
+// btn to switch from signup form to signin form
+const signupSwitchBtn = document.querySelector('#SuSwitchBtn');
+const signinSwitchBtn = document.querySelector('#SiSwitchBtn');
+
+// forms
+const signInForm = document.querySelector('#sign-in-form');
+const signUpForm = document.querySelector('#sign-up-form');
+
+signinSwitchBtn.addEventListener('click', function () {
+    signInForm.classList.remove('hidden')
+    signUpForm.classList.add('hidden');
+    console.log(1);
+})
+
+signupSwitchBtn.addEventListener('click', function () {
+    signInForm.classList.add('hidden')
+    signUpForm.classList.remove('hidden');
+    console.log(2);
+})
+</script>
 </body>
 
 </html>
