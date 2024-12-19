@@ -1,5 +1,62 @@
 <?php 
-require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
+    require "/xampp/htdocs/LA-MICHELINE/public/bin/connect.php";
+
+    $menu_id = "";
+    $menu_name = "";
+    $price = "";
+    $description = "";
+
+    $errorMessage = "";
+    $succesMessage = "";
+
+    if ($_SERVER['REQUEST_METHOD'] == "GET" || isset($_GET['menu_id'])) {
+            $menu_id = intval($_GET['menu_id']);
+
+            $sql = "SELECT * FROM menu WHERE menu_id = '$menu_id'";
+            $result = $connect->query($sql);
+
+            if ($result && $row = $result->fetch_assoc()) {
+                $menu_name = $row['menu_nom'];
+                $price = $row['price'];
+                $description = $row['description'];
+            } else {
+                $errorMessage = "Menu not found";
+            }
+            // if (!$result) {
+            //     $errorMessage = "Invalid query " . $connect->error;
+            // }
+
+            // $row = $result->fetch_assoc();
+            // $menu_name = $row['menu_nom'];
+            // $price = $row['price'];
+            // $description = $row['description'];
+
+            // if (!$row) {
+            //     header ("location:");
+            //     exit;
+            // }
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        $menu_id = $_POST['menu_id'];
+        $menu_name = $_POST['menu_nom'];
+        $price = $_POST['price'];
+        $description = $_POST['description'];
+    
+        if (empty($menu_name) || empty($price) || empty($description)) {
+            $errorMessage = "All fields are required";
+        }
+
+        $sql = "UPDATE `menu` SET `menu_nom`='$menu_name',`description`='$description',`price`='$price' WHERE `menu_id` = '$menu_id'";
+        $result = $connect->query($sql);
+
+        if (!$result) {
+            $errorMessage = "Invalid query " . $connect->error;
+        } else {
+            $succesMessage = "Menu updated successfully";
+            $menu_name = $price = $description = "";
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +112,7 @@ require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
                     </svg>
                     Reservations
                 </a>
-                <a href="../public/menusAdmin.php" class="flex items-center px-6 py-3 bg-zinc-700 text-white">
+                <a href="../menusAdmin.php" class="flex items-center px-6 py-3 bg-zinc-700 text-white">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                     </svg>
@@ -96,9 +153,7 @@ require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
                             </thead>
                             <tbody class="divide-y divide-gray-200">
                                 <?php 
-                                    include "/xampp/htdocs/LA-MICHELINE/public/bin/connect.php";
-
-                                    $data = "SELECT * FROM menu";
+                                    $data = "SELECT * FROM `menu`";
                                     $result = $connect->query($data);
 
                                     if (!$result) {
@@ -106,8 +161,6 @@ require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
                                     }
                                     
                                     foreach($result as $value) {
-                                        
-                                    
                                 ?>
                                 <tr class="hover:bg-zinc-100 hover:transition-all duration-500">
                                     <td class="px-6 py-4 whitespace-nowrap text-black"><?= $value['menu_nom'] ?></td>
@@ -132,12 +185,10 @@ require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
                 <!-- Add/Edit Menu Form -->
                 <div class="bg-white shadow-xl">
                     <div class="p-6 border-b">
-                        <h2 class="text-xl font-semibold">Add New Menu</h2>
+                        <h2 class="text-xl font-semibold">Modify Menu</h2>
                     </div>
                     <div class="p-6">
                         <form class="space-y-6" method="POST" action="../public/bin/addMenu.php">
-                            <input type="hidden" name="menu_id" value="<?= $menu_id ?>">
-
                             <?php 
                                 if (!empty($errorMessage)) {
                                     echo "
@@ -145,14 +196,14 @@ require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
                                         <strong>$errorMessage</strong>
                                         </div>
                                     ";
-                                    $menu_name = $price = $description = "";
+                                    // $menu_name = $price = $description = "";
                                 } elseif (!empty($succesMessage)) {
                                     echo "
                                     <div class=\"bg-green-500 mb-4 flex items-center justify-center border-2 border-green-300 rounded-lg p-1\">
                                         <strong>$succesMessage</strong>
                                     </div>
                                     ";
-                                    $menu_name = $price = $description = "";
+                                    // $menu_name = $price = $description = "";
                                 }
                             ?>
                             <div>
@@ -171,9 +222,9 @@ require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
                             </div>
                             
                             <div class="flex justify-end space-x-3">
-                                <button type="submit" class="px-4 py-2 bg-white text-black hover:text-white hover:bg-zinc-700 hover:transition-all duration-500 ">
+                                <a href="../menusAdmin.php" class="px-4 py-2 bg-white text-black hover:text-white hover:bg-zinc-700 hover:transition-all duration-500 ">
                                     Save Menu
-                                </button>
+                                </a>
                             </div>
                         </form>
                     </div>
