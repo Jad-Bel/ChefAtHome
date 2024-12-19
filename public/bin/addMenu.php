@@ -1,13 +1,31 @@
 <?php 
-    $servername = "localhost";
-    $username = "root";
-    $passwrd = "";
-    $database = "lamicheline_db";
+    require "/xampp/htdocs/LA-MICHELINE/public/bin/connect.php";
 
-    $connect = mysqli_connect($servername, $username, $passwrd, $database);
+    $menu_name = "";
+    $price = "";
+    $description = "";
 
-    if (!$connect) {
-        die("Connection failed: " . mysqli_connect_error());
+    $errorMessage = "";
+    $succesMessage = "";
+
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        $menu_name = $_POST['menuName'];
+        $price = $_POST['menuPrice'];
+        $description = $_POST['menuDescription'];
+
+        do {
+            if (empty($menu_name) || empty($price) || empty($description)) {
+                $errorMessage = "All fields are required";
+                break;
+            }
+
+            $sql = "INSERT INTO menu (`menu_nom`, `description`, `price`) VALUES ('$menu_name', '$description', '$price')";
+            $result = $connect->query($sql);
+
+            if (!$result) {
+                $errorMessage = "Invalid query " . $connect->error;
+            }
+        } while (false);
     }
 
     

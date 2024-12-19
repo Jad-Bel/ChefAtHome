@@ -1,3 +1,7 @@
+<?php 
+require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,27 +89,40 @@
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                     <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
+                                <?php 
+                                    include "/xampp/htdocs/LA-MICHELINE/public/bin/connect.php";
+
+                                    $data = "SELECT * FROM menu";
+                                    $result = $connect->query($data);
+
+                                    if (!$result) {
+                                        echo "Invalid query: " . $connect->error;
+                                    }
+                                    
+                                    while ($row = $result->fetch_assoc()) {
+                                        
+                                    
+                                ?>
                                 <tr class="hover:bg-zinc-100 hover:transition-all duration-500">
-                                    <td class="px-6 py-4 whitespace-nowrap">Menu Dégustation</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">5 temps</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">135 CHF</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><?php echo $row=['menu_nom']; ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><?php echo $row=['price']; ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 hover:bg-green-800 hover:text-green-100 hover:transition-all duration-500">
                                             Active
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <button class="text-blue-600 p-2 hover:text-white hover:bg-indigo-600 hover:transition-all duration-500 mr-2">Edit</button>
-                                        <button class="text-red-600 p-2 hover:text-white hover:bg-red-600 hover:transition-all duration-500">Delete</button>
+                                        <a href="#" class="text-blue-600 p-2 hover:text-white hover:bg-indigo-600 hover:transition-all duration-500 mr-2">Edit</a>
+                                        <a href="#" class="text-red-600 p-2 hover:text-white hover:bg-red-600 hover:transition-all duration-500">Delete</a>
                                     </td>
                                 </tr>
+                                <?php } ?>
                                 <!-- More menu items... -->
                             </tbody>
                         </table>
@@ -119,30 +136,37 @@
                     </div>
                     <div class="p-6">
                         <form class="space-y-6" method="POST" action="../public/bin/addMenu.php">
+                            <?php 
+                                if (!empty($errorMessage)) {
+                                    echo "
+                                        <div class=\"bg-red-500 flex items-center justify-center border-2 border-red-300 rounded-lg p-1\">
+                                        <strong>$errorMessage</strong>
+                                        </div>
+                                    ";
+                                } elseif (!empty($succesMessage)) {
+                                    echo "
+                                    <div class=\"bg-green-500 mb-4 flex items-center justify-center border-2 border-green-300 rounded-lg p-1\">
+                                        <strong>$succesMessage</strong>
+                                    </div>
+                                    ";
+                                }
+                            ?>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Menu Name</label>
-                                <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <label class="block text-sm font-medium text-gray-700" for="menuName">Menu Name</label>
+                                <input type="text" value="<?php echo $menu_name ?>" name="menuName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                             </div>
-                            <!-- <div>
-                                <label class="block text-sm font-medium text-gray-700">Type</label>
-                                <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <option>5 temps</option>
-                                    <option>6 temps</option>
-                                    <option>Special</option>
-                                </select>
-                            </div> -->
+
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Price (CHF)</label>
-                                <input type="number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <label class="block text-sm font-medium text-gray-700" for="menuPrice">Price (EUR)</label>
+                                <input type="number" value="<?php echo $price ?>" name="menuPrice" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                             </div>
+
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Description</label>
-                                <textarea rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                                <label class="block text-sm font-medium text-gray-700" for="menuDescription">Description</label>
+                                <textarea rows="3" value="<?php echo $description ?>" name="menuDescription" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
                             </div>
+                            
                             <div class="flex justify-end space-x-3">
-                                <button type="button" class="px-4 py-2 border bg-zinc-700 text-white hover:bg-gray-50 hover:text-black hover:transition-all duration-500">
-                                    Cancel
-                                </button>
                                 <button type="submit" class="px-4 py-2 bg-white text-black hover:text-white hover:bg-zinc-700 hover:transition-all duration-500 ">
                                     Save Menu
                                 </button>
