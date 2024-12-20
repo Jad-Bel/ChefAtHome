@@ -75,47 +75,6 @@
                 <!-- Admin View -->
                 <div id="adminView" class="w-[250px] md:w-full max-w-7xl ">
                     <h2 class="text-2xl font-semibold mb-6">Plate Management</h2>
-                    
-                    <!-- Add New Plate Form -->
-                    <div class="bg-white -lg shadow mb-6">
-                        <div class="p-6 border-b">
-                            <h3 class="text-xl font-semibold">Add New Plate</h3>
-                        </div>
-                        <div class="p-6">
-                            <form class="space-y-4" method="POST" action="../public/platesAdmin.php">
-                            <input type="hidden" name="menu_id" value="<?= $menu_id ?>">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Plate Name</label>
-                                    <input type="text" name="plateName" value="<?php $plate_name ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Description</label>
-                                    <textarea rows="3" name="plateDescription" value="<?php $plate_description ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500"></textarea>
-                                </div>
-                                <div>
-                                <label class="block text-sm font-medium text-gray-700">Category</label>
-                                    <input type="text" name="plateCategory" value="<?php $plate_categorie ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Menu</label>
-                                    <select name="plateMenu" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
-                                        <?php 
-                                            $result = $connect->query("SELECT menu_id, menu_nom FROM menu");
-                                            foreach ($result as $value) {
-                                                echo "<option value='" . $value['menu_id'] . "'>" . $value['menu_nom'] . "</option>";
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="flex justify-end">
-                                    <button type="submit" class="px-4 py-2 text-zinc-900 hover:bg-zinc-700 hover:text-white :transition-all duration-700">
-                                        Add Plate
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
                     <!-- Plates Table -->
                     <div class="bg-white -lg shadow overflow-hidden">
                         <table class="min-w-full divide-y divide-gray-200">
@@ -140,7 +99,13 @@
                                 ?>
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap"><?= $value['nom_plat'] ?></td>
-                                    <td class="px-6 py-4"><?= $value['description'] ?></td>
+                                    <td class="px-6 py-4"><?php 
+                                        if (strlen($value['description']) > 5) {
+                                            echo substr($value['description'], 0, 5) . "..."; 
+                                        } else {
+                                            echo $value['description'];
+                                        }
+                                        ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap"><?= $value['type'] ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="../public/bin/modifyplate.php?plat_id=<?= $value['plat_id']?>" class="text-indigo-600 p-2 hover:text-white hover:bg-indigo-600 hover:transition-all duration-500 mr-2">Edit</a>
@@ -151,47 +116,45 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
 
-                <!-- User View -->
-                <div id="userView" class="mt-8 hidden">
-                    <h2 class="text-2xl font-semibold mb-6">Our Menu (User View)</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Plate Card -->
-                        <div class="bg-white -lg shadow overflow-hidden">
-                            <img src="https://via.placeholder.com/400x300" alt="Foie Gras Terrine" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h3 class="text-xl font-semibold mb-2">Foie Gras Terrine</h3>
-                                <p class="text-gray-600 mb-4">Duck foie gras with fig chutney</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-lg font-bold">35 CHF</span>
-                                    <button class="px-4 py-2 bg-red-500 text-white  hover:bg-red-600">Remove</button>
-                                </div>
-                            </div>
+
+                    <!-- Add New Plate Form -->
+                    <div class="bg-white -lg shadow mt-6">
+                        <div class="p-6 border-b">
+                            <h3 class="text-xl font-semibold">Add New Plate</h3>
                         </div>
-                        <!-- Plate Card -->
-                        <div class="bg-white -lg shadow overflow-hidden">
-                            <img src="https://via.placeholder.com/400x300" alt="Beef Tenderloin" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h3 class="text-xl font-semibold mb-2">Beef Tenderloin</h3>
-                                <p class="text-gray-600 mb-4">Grilled beef tenderloin with truffle sauce</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-lg font-bold">55 CHF</span>
-                                    <button class="px-4 py-2 bg-red-500 text-white  hover:bg-red-600">Remove</button>
+                        <div class="p-6">
+                            <form class="space-y-4" method="POST" action="../public/platesAdmin.php">
+                            <input type="hidden" name="plat_id" value="<?= $menu_id ?>">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Plate Name</label>
+                                    <input type="text" name="plateName" value="<?php $plate_name ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
                                 </div>
-                            </div>
-                        </div>
-                        <!-- Plate Card -->
-                        <div class="bg-white -lg shadow overflow-hidden">
-                            <img src="https://via.placeholder.com/400x300" alt="Chocolate Fondant" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h3 class="text-xl font-semibold mb-2">Chocolate Fondant</h3>
-                                <p class="text-gray-600 mb-4">Warm chocolate cake with vanilla ice cream</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-lg font-bold">18 CHF</span>
-                                    <button class="px-4 py-2 bg-red-500 text-white  hover:bg-red-600">Remove</button>
+                                <div>
+                                <label class="block text-sm font-medium text-gray-700">Category</label>
+                                    <input type="text" name="plateCategory" value="<?php $plate_categorie ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
                                 </div>
-                            </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-3">Menu</label>
+                                    <select name="plateMenu" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
+                                        <?php 
+                                            $result = $connect->query("SELECT menu_id, menu_nom FROM menu");
+                                            foreach ($result as $value) {
+                                                echo "<option value='" . $value['menu_id'] . "'>" . $value['menu_nom'] . "</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Description</label>
+                                    <textarea rows="3" name="plateDescription" value="<?php $plate_description ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500"></textarea>
+                                </div>
+                                <div class="flex justify-end">
+                                    <button type="submit" class="px-4 py-2 text-zinc-900 hover:bg-zinc-700 hover:text-white :transition-all duration-700">
+                                        Add Plate
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
