@@ -123,6 +123,23 @@
                         <div class="p-6 border-b">
                             <h3 class="text-xl font-semibold">Add New Plate</h3>
                         </div>
+                            <?php 
+                                if (!empty($errorMessage)) {
+                                    echo "
+                                        <div class=\"bg-red-500 flex items-center justify-center border-2 border-red-300 rounded-lg p-1\">
+                                        <strong>$errorMessage</strong>
+                                        </div>
+                                    ";
+                                    $menu_name = $price = $description = "";
+                                } elseif (!empty($succesMessage)) {
+                                    echo "
+                                    <div class=\"bg-green-500 mb-4 flex items-center justify-center border-2 border-green-300 rounded-lg p-1\">
+                                        <strong>$succesMessage</strong>
+                                    </div>
+                                    ";
+                                    $menu_name = $price = $description = "";
+                                }
+                            ?>
                         <div class="p-6">
                             <form class="space-y-4" method="POST" action="../public/platesAdmin.php">
                             <input type="hidden" name="plat_id" value="<?= $menu_id ?>">

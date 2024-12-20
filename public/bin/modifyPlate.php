@@ -1,7 +1,7 @@
 <?php 
-    require "/xampp/htdocs/LA-MICHELINE/public/bin/addPlate.php";
     require "/xampp/htdocs/LA-MICHELINE/public/bin/connect.php";
 
+$plate_id = "";
 $plate_name = "";
 $plate_description = "";
 $plate_categorie = "";
@@ -10,9 +10,23 @@ $plate_menu = "";
 $errorMessage = "";
 $succesMessage = "";
 
-if ($_SERVER['REQUEST_METHOD'] == "GET") {}
+if ($_SERVER['REQUEST_METHOD'] == "GET") {
+    $menu_id = intval($_GET['plat_id']);
+
+    $sql = "SELECT * FROM `plats` WHERE `plat_id` = '$plate_id'";
+    $result = $connect->query($sql);
+
+    if ($row = $result->fetch_assoc()) {
+        $plate_name = $row['nom_plat'];
+        $plate_description = $row['description'];
+        $plate_categorie = $row['type'];
+    } else {
+        $errorMessage = "Dish not found";
+    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $plate_id = $_POST['plat_id'];
     $plate_name = $_POST['plateName'];
     $plate_description = $_POST['plateDescription'];
     $plate_categorie = $_POST['plateCategory'];
@@ -22,18 +36,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $errorMessage = "Plate name, description, categorie are required";
         }
 
-        $sql = "INSERT INTO `plats`(`nom_plat`, `description`, `type`, `menu_id`) VALUES ('$plate_name','$plate_description','$plate_categorie','$plate_menu')";
+        $sql = "UPDATE `plats` SET `nom_plat` = '$plate_name', `description` = '$plate_description', `type` = '$plate_categorie', `menu_id` = '$plate_menu')";
         $result = $connect->query($sql);
 
         if (!$result) {
             $errorMessage = "Invalid query: " . $connect->error;
+        } else {
+            $succesMessage = "Plate added successfully";
+            $plate_name = "";
+            $plate_description = "";
+            $plate_categorie = "";
+            $plate_menu = "";
         }
 
-        $succesMessage = "Plate added successfully";
-        $plate_name = "";
-        $plate_description = "";
-        $plate_categorie = "";
-        $plate_menu = "";
 }
 ?>
 <!DOCTYPE html>
@@ -109,47 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <!-- Admin View -->
                 <div id="adminView" class="w-[250px] md:w-full max-w-7xl ">
                     <h2 class="text-2xl font-semibold mb-6">Plate Management</h2>
-                    
-                    <!-- Add New Plate Form -->
-                    <div class="bg-white -lg shadow mb-6">
-                        <div class="p-6 border-b">
-                            <h3 class="text-xl font-semibold">Add New Plate</h3>
-                        </div>
-                        <div class="p-6">
-                            <form class="space-y-4" method="POST" action="../public/platesAdmin.php">
-                            <input type="hidden" name="menu_id" value="<?= $menu_id ?>">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Plate Name</label>
-                                    <input type="text" name="plateName" value="<?php $plate_name ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Description</label>
-                                    <textarea rows="3" name="plateDescription" value="<?php $plate_description ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500"></textarea>
-                                </div>
-                                <div>
-                                <label class="block text-sm font-medium text-gray-700">Category</label>
-                                    <input type="text" name="plateCategory" value="<?php $plate_categorie ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Menu</label>
-                                    <select name="plateMenu" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
-                                        <?php 
-                                            $result = $connect->query("SELECT menu_id, menu_nom FROM menu");
-                                            foreach ($result as $value) {
-                                                echo "<option value='" . $value['menu_id'] . "'>" . $value['menu_nom'] . "</option>";
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="flex justify-end">
-                                    <button type="submit" class="px-4 py-2 text-zinc-900 hover:bg-zinc-700 hover:text-white :transition-all duration-700">
-                                        Add Plate
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
                     <!-- Plates Table -->
                     <div class="bg-white -lg shadow overflow-hidden">
                         <table class="min-w-full divide-y divide-gray-200">
@@ -174,10 +148,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                 ?>
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap"><?= $value['nom_plat'] ?></td>
-                                    <td class="px-6 py-4"><?= $value['description'] ?></td>
+                                    <td class="px-6 py-4"><?php 
+                                        if (strlen($value['description']) > 5) {
+                                            echo substr($value['description'], 0, 5) . "..."; 
+                                        } else {
+                                            echo $value['description'];
+                                        }
+                                        ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap"><?= $value['type'] ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="../public/bin/modifyplate.php?plat_id=<?= $value['plat_id']?>" class="text-indigo-600 p-2 hover:text-white hover:bg-indigo-600 hover:transition-all duration-500 mr-2">Edit</a>
+                                        <a href="../bin/modifyplate.php?plat_id=<?= $value['plat_id']?>" class="text-indigo-600 p-2 hover:text-white hover:bg-indigo-600 hover:transition-all duration-500 mr-2">Edit</a>
                                         <a href="../public/bin/deletePlate.php?plat_id=<?= $value['plat_id']?>" class="text-red-600 p-2 hover:text-white hover:bg-red-600 hover:transition-all duration-500">Delete</a>
                                     </td>
                                 </tr>
@@ -185,47 +165,65 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             </tbody>
                         </table>
                     </div>
-                </div>
 
-                <!-- User View -->
-                <div id="userView" class="mt-8 hidden">
-                    <h2 class="text-2xl font-semibold mb-6">Our Menu (User View)</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Plate Card -->
-                        <div class="bg-white -lg shadow overflow-hidden">
-                            <img src="https://via.placeholder.com/400x300" alt="Foie Gras Terrine" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h3 class="text-xl font-semibold mb-2">Foie Gras Terrine</h3>
-                                <p class="text-gray-600 mb-4">Duck foie gras with fig chutney</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-lg font-bold">35 CHF</span>
-                                    <button class="px-4 py-2 bg-red-500 text-white  hover:bg-red-600">Remove</button>
-                                </div>
-                            </div>
+
+                    <!-- Add New Plate Form -->
+                    <div class="bg-white -lg shadow mt-6">
+                        <div class="p-6 border-b">
+                            <h3 class="text-xl font-semibold">Modify Plate</h3>
                         </div>
-                        <!-- Plate Card -->
-                        <div class="bg-white -lg shadow overflow-hidden">
-                            <img src="https://via.placeholder.com/400x300" alt="Beef Tenderloin" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h3 class="text-xl font-semibold mb-2">Beef Tenderloin</h3>
-                                <p class="text-gray-600 mb-4">Grilled beef tenderloin with truffle sauce</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-lg font-bold">55 CHF</span>
-                                    <button class="px-4 py-2 bg-red-500 text-white  hover:bg-red-600">Remove</button>
+                            <?php 
+                                if (!empty($errorMessage)) {
+                                    echo "
+                                        <div class=\"bg-red-500 flex items-center justify-center border-2 border-red-300 rounded-lg p-1\">
+                                        <strong>$errorMessage</strong>
+                                        </div>
+                                    ";
+                                    $menu_name = $price = $description = "";
+                                } elseif (!empty($succesMessage)) {
+                                    echo "
+                                    <div class=\"bg-green-500 mb-4 flex items-center justify-center border-2 border-green-300 rounded-lg p-1\">
+                                        <strong>$succesMessage</strong>
+                                    </div>
+                                    ";
+                                    $menu_name = $price = $description = "";
+                                }
+                            ?>
+                        <div class="p-6">
+                            <form class="space-y-4" method="POST" action="../bin/modifyPlate.php">
+                            <input type="hidden" name="platId" value="<?= $plate_id ?>">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Plate Name</label>
+                                    <input type="text" name="plateName" value="<?php $plate_name ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
                                 </div>
-                            </div>
-                        </div>
-                        <!-- Plate Card -->
-                        <div class="bg-white -lg shadow overflow-hidden">
-                            <img src="https://via.placeholder.com/400x300" alt="Chocolate Fondant" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h3 class="text-xl font-semibold mb-2">Chocolate Fondant</h3>
-                                <p class="text-gray-600 mb-4">Warm chocolate cake with vanilla ice cream</p>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-lg font-bold">18 CHF</span>
-                                    <button class="px-4 py-2 bg-red-500 text-white  hover:bg-red-600">Remove</button>
+                                <div>
+                                <label class="block text-sm font-medium text-gray-700">Category</label>
+                                    <input type="text" name="plateCategory" value="<?php $plate_categorie ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
                                 </div>
-                            </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-3">Menu</label>
+                                    <select name="plateMenu" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
+                                        <?php 
+                                            $result = $connect->query("SELECT menu_id, menu_nom FROM menu");
+                                            foreach ($result as $value) {
+                                                echo "<option value='" . $value['menu_id'] . "'>" . $value['menu_nom'] . "</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Description</label>
+                                    <textarea rows="3" name="plateDescription" value="<?php $plate_description ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500"></textarea>
+                                </div>
+                                <div class="flex justify-end">
+                                    <a href="../platesAdmin.php" class="px-4 py-2 bg-zinc-700 text-white hover:text-black hover:bg-white hover:transition-all duration-500 ">
+                                        cancel
+                                    </a>
+                                    <button type="submit" class="px-4 py-2 text-zinc-900 hover:bg-zinc-700 hover:text-white :transition-all duration-700">
+                                        Update Plate
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $plate_name = $_POST['plateName'];
     $plate_description = $_POST['plateDescription'];
     $plate_categorie = $_POST['plateCategory'];
-    $plate_menu = $_POST['plateMenu'];
+    $plate_menu = $_POST['plateMenu'] ?? "";
 
         if (empty($plate_name) || empty($plate_description) || empty($plate_categorie)) {
             $errorMessage = "Plate name, description, categorie are required";

@@ -25,10 +25,10 @@
     }
 
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
-        $menu_id = $_POST['menu_id'];
-        $menu_name = $_POST['menu_nom'];
-        $price = $_POST['price'];
-        $description = $_POST['description'];
+        $menu_id = $_POST['menuId'];
+        $menu_name = $_POST['menuName'];
+        $price = $_POST['menuPrice'];
+        $description = $_POST['menuDescription'];
     
         if (empty($menu_name) || empty($price)) {
             $errorMessage = "All fields are required";
@@ -93,7 +93,7 @@
                 <h1 class="text-xl font-semibold text-gray-800">Restaurant Admin</h1>
             </div>
             <nav class="mt-6">
-                <a href="../public/reservationAdmin.php" class="flex items-center px-6 py-3 text-gray-600 hover:bg-zinc-700 hover:text-white :transition-all duration-500">
+                <a href="../reservationAdmin.php" class="flex items-center px-6 py-3 text-gray-600 hover:bg-zinc-700 hover:text-white :transition-all duration-500">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
                     </svg>
@@ -105,7 +105,7 @@
                     </svg>
                     Menus
                 </a>
-                <a href="../public/platesAdmin.php" class="flex items-center px-6 py-3 text-gray-600 hover:bg-zinc-700 hover:text-white :transition-all duration-700">
+                <a href="../platesAdmin.php" class="flex items-center px-6 py-3 text-gray-600 hover:bg-zinc-700 hover:text-white :transition-all duration-700">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                     </svg>
@@ -158,8 +158,8 @@
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="../public/bin/modifyMenu.php?menu_id=<?= $value['menu_id']?>" class="text-blue-600 p-2 hover:text-white hover:bg-indigo-600 hover:transition-all duration-500 mr-2">Edit</a>
-                                        <a href="#" class="text-red-600 p-2 hover:text-white hover:bg-red-600 hover:transition-all duration-500">Delete</a>
+                                        <a href="../bin/modifyMenu.php?menu_id=<?= $value['menu_id']?>" class="text-blue-600 p-2 hover:text-white hover:bg-indigo-600 hover:transition-all duration-500 mr-2">Edit</a>
+                                        <a href="../bin/deleteMenu.php?menu_id=<?= $value['menu_id']?>" class="text-red-600 p-2 hover:text-white hover:bg-red-600 hover:transition-all duration-500">Delete</a>
                                     </td>
                                 </tr>
                                 <?php } ?>
@@ -175,7 +175,9 @@
                         <h2 class="text-xl font-semibold">Modify Menu</h2>
                     </div>
                     <div class="p-6">
-                        <form class="space-y-6" method="POST" action="../menusAdmin.php">
+                        <form class="space-y-6" method="POST" action="../bin/modifyMenu.php">
+                        <input type="hidden" name="menuId" value="<?= $menu_id ?>">
+
                             <?php 
                                 if (!empty($errorMessage)) {
                                     echo "
