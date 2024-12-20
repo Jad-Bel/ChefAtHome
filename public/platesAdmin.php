@@ -1,6 +1,6 @@
 <?php 
-    require "/xampp/htdocs/LA-MICHELINE/public/bin/addPlate.php";
-    require "/xampp/htdocs/LA-MICHELINE/public/bin/connect.php";
+    require "/laragon/www/LA-MICHELINE/public/bin/addPlate.php";
+    require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

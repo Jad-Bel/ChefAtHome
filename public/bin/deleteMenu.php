@@ -1,5 +1,5 @@
 <?php 
-    require "/xampp/htdocs/LA-MICHELINE/public/bin/connect.php";
+    require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
 
     if (isset($_GET['menu_id'])) {
         $menu_id = intval($_GET['menu_id']);

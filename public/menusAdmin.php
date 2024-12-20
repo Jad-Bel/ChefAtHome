@@ -1,5 +1,5 @@
 <?php 
-require "/xampp/htdocs/LA-MICHELINE/public/bin/addMenu.php";
+require "/laragon/www/LA-MICHELINE/public/bin/addMenu.php";
 ?>
 
 <!DOCTYPE html>

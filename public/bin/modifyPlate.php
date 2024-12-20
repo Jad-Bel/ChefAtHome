@@ -1,5 +1,5 @@
 <?php 
-    require "/xampp/htdocs/LA-MICHELINE/public/bin/connect.php";
+    require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
 
 $plate_id = "";
 $plate_name = "";
@@ -10,23 +10,25 @@ $plate_menu = "";
 $errorMessage = "";
 $succesMessage = "";
 
-if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    $menu_id = intval($_GET['plat_id']);
+if ($_SERVER['REQUEST_METHOD'] == "GET" || isset($_GET['menu_id'])) {
+    $plate_id = intval($_GET['plat_id']);
 
-    $sql = "SELECT * FROM `plats` WHERE `plat_id` = '$plate_id'";
+    $sql = "SELECT * FROM plats WHERE plat_id = $plate_id";
     $result = $connect->query($sql);
-
+// var_dump($result->fetch_assoc());
     if ($row = $result->fetch_assoc()) {
+        // echo "1";
         $plate_name = $row['nom_plat'];
         $plate_description = $row['description'];
         $plate_categorie = $row['type'];
     } else {
+        // echo "2";
         $errorMessage = "Dish not found";
     }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $plate_id = $_POST['plat_id'];
+    $plate_id = $_POST['platId'];
     $plate_name = $_POST['plateName'];
     $plate_description = $_POST['plateDescription'];
     $plate_categorie = $_POST['plateCategory'];
@@ -36,17 +38,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $errorMessage = "Plate name, description, categorie are required";
         }
 
-        $sql = "UPDATE `plats` SET `nom_plat` = '$plate_name', `description` = '$plate_description', `type` = '$plate_categorie', `menu_id` = '$plate_menu')";
+        $sql = "UPDATE plats SET `plat_id` = '$plate_id', `nom_plat` = '$plate_name', `description` = '$plate_description', `type` = '$plate_categorie', `menu_id` = '$plate_menu')";
         $result = $connect->query($sql);
 
         if (!$result) {
             $errorMessage = "Invalid query: " . $connect->error;
+            echo "2";
         } else {
-            $succesMessage = "Plate added successfully";
+            $succesMessage = "Plate updated successfully";
             $plate_name = "";
             $plate_description = "";
             $plate_categorie = "";
             $plate_menu = "";
+            echo "1";
         }
 
 }
@@ -194,11 +198,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             <input type="hidden" name="platId" value="<?= $plate_id ?>">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Plate Name</label>
-                                    <input type="text" name="plateName" value="<?php $plate_name ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
+                                    <input type="text" name="plateName" value="<?php echo $plate_name ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
                                 </div>
                                 <div>
                                 <label class="block text-sm font-medium text-gray-700">Category</label>
-                                    <input type="text" name="plateCategory" value="<?php $plate_categorie ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
+                                    <input type="text" name="plateCategory" value="<?php echo $plate_categorie ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-3">Menu</label>
@@ -213,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Description</label>
-                                    <textarea rows="3" name="plateDescription" value="<?php $plate_description ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500"></textarea>
+                                    <textarea rows="3" name="plateDescription" value="<?php echo $plate_description ?>" class="mt-1 block w-full -md border-gray-300 shadow-sm focus:border-zinc-500 focus:ring-zinc-500"></textarea>
                                 </div>
                                 <div class="flex justify-end">
                                     <a href="../platesAdmin.php" class="px-4 py-2 bg-zinc-700 text-white hover:text-black hover:bg-white hover:transition-all duration-500 ">

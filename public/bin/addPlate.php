@@ -1,5 +1,5 @@
 <?php 
-require "/xampp/htdocs/LA-MICHELINE/public/bin/connect.php";
+require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
 
 $plate_name = "";
 $plate_description = "";

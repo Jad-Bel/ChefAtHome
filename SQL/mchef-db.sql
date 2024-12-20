@@ -30,7 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `menu` (
   `menu_id` int(11) NOT NULL,
   `menu_nom` varchar(100) NOT NULL,
-  `plat_id` int(11) DEFAULT NULL
+  `plat_id` int(11) DEFAULT NULL,
+  `description` text NULL,
+  `price` int(11) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -43,7 +45,7 @@ CREATE TABLE `plats` (
   `plat_id` int(11) NOT NULL,
   `nom_plat` varchar(100) NOT NULL,
   `description` text DEFAULT NULL,
-  `type` enum('Entree','Plat Principal','Desert') NOT NULL
+  `type` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
