@@ -1,3 +1,6 @@
+<?php 
+    require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
+?>
 <!DOCTYPE html>
 <HTML lang="en">
 <head>
@@ -87,26 +90,43 @@
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Menu</th>
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                    <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
                                     <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100">
+                            <?php 
+                                    $reserv_sql = "SELECT * FROM reservation";
+                                    $reserv_result = $connect->query($reserv_sql);
+
+                                    if (!$reserv_result) {
+                                        echo "Invalid Query: " . $connect->error;
+                                    }
+
+                                    foreach ($reserv_result as $reservation) {
+                                ?>
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">John Doe</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Menu Dégustation</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">123 Main St, City</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">2024-01-15</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">19:00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $reservation['user_name'] . " " . $reservation['user_last_name']?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                    <?php
+                                        require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
+                                        
+                                        $menu_sql = "SELECT menu_nom FROM menu WHERE `menu_id` = " . $reservation['menu_id'];
+                                        $menu_result = $connect->query($menu_sql);
+                                        $menu = $menu_result->fetch_assoc();
+                                        echo $menu['menu_nom'];
+                                    ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $reservation['address']?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $reservation['reservation_date'] ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                                        <button class="inline-flex items-center px-3 py-1.5 border border-green-400 text-sm font-medium text-black bg-white hover:bg-green-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                        <a href="../public/bin/acceptRes.php?reserv_id=<?php $reservation['reserv_id'] ?>" class="inline-flex items-center px-3 py-1.5 border border-green-400 text-sm font-medium text-black bg-white hover:bg-green-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                             Accept
-                                        </button>
-                                        <button class="inline-flex items-center px-3 py-1.5 border border-red-400 text-sm font-medium  text-black bg-white hover:bg-red-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                        </a>
+                                        <a href="../public/bin/declineRes.php?reserv_id=<?php $reservation['reserv_id'] ?>" class="inline-flex items-center px-3 py-1.5 border border-red-400 text-sm font-medium  text-black bg-white hover:bg-red-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                             Decline
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
+                                <?php } ?>
                                 <!-- More reservation rows -->
                             </tbody>
                         </table>
@@ -131,8 +151,6 @@
                             </thead>
                             <tbody class="divide-y divide-gray-100">
                             <?php 
-                                    require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
-
                                     $users_sql = "SELECT * FROM users WHERE `role_id` = 2";
                                     $result = $connect->query($users_sql);
 
@@ -164,8 +182,6 @@
                                 <?php } ?>
 
                                 <?php 
-                                    require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
-
                                     $users_sql = "SELECT * FROM users WHERE `role_id` = 1";
                                     $result = $connect->query($users_sql);
 
@@ -189,21 +205,11 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $user['user_address'] ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $role_row['role_name'] ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="../public/bin/deleteUser.php" class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium  text-black bg-white hover:bg-red-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                        <a href="../public/bin/deleteUser.php?user_id=<?= $user['user_id'] ?>" class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium  text-black bg-white hover:bg-red-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                             Delete User
                                         </a>
                                     </td>
                                 </tr>
-                                <!-- <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $user['user_name'] . $user['user_last_name'] ?></td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $user['user_email'] ?></td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $role_row['role_name'] ?></td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <button disabled class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium  text-gray-400 bg-gray-100 cursor-not-allowed">
-                                            Delete User
-                                        </button>
-                                    </td>
-                                </tr> -->
                                 <?php } ?>
                                 <!-- More user rows -->
                             </tbody>

@@ -10,7 +10,7 @@
             header("location: ../platesAdmin.php");
             exit;
         } else {
-            echo "Error deleting the dish: " > $connect->error;
+            echo "Error deleting the dish: " . $connect->error;
         }
     } else {
         echo "No dish provided.";
