@@ -119,20 +119,21 @@
                         <h3 class="text-lg font-semibold text-gray-800">Users Management</h3>
                     </div>
                     <div class="overflow-x-auto">
-                        <table class="w-full">
+                        <table class="w-full overflow-y-hidden">
                             <thead class="bg-gray-50 border-b border-gray-100">
                                 <tr>
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                    <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Adresse</th>
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
                                     <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100">
-                                <?php 
+                            <?php 
                                     require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
 
-                                    $users_sql = "SELECT * FROM users";
+                                    $users_sql = "SELECT * FROM users WHERE `role_id` = 2";
                                     $result = $connect->query($users_sql);
 
                                     if (!$result) {
@@ -140,55 +141,69 @@
                                     }
 
                                     foreach ($result as $user) {
+                                        $role_sql = "SELECT `role_name` FROM `role` WHERE `role_id` = " . $user['role_id'];
+                                        $role_result = $connect->query($role_sql);
+
+                                            if (!$role_result) {
+                                                echo "Invalid query: " . $connect->error;
+                                            }
+
+                                            $role_row = $role_result->fetch_assoc();
                                 ?>
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $user['user_name'] . " " . $user['user_last_name'] ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $user['user_email'] ?></td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                        <?php 
-                                            require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
-                                            
-                                            $role_sql = "SELECT `role_name` FROM `role`";
-                                            $result = $connect->query($role_sql);
-
-                                            if (!$result) {
-                                                echo "Invalid query: " . $connect->error;
-                                            }
-
-                                            $role_row = $connect->fetch_assoc();
-                                            echo $role_row['role_name'];
-                                        ?>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="../public/bin/deleteUser.php" class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium  text-black bg-white hover:bg-red-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                            Delete User
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $user['user_name'] . $user['user_last_name'] ?></td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $user['user_email'] ?></td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                        <?php 
-                                            require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
-
-                                            $role_sql = "SELECT * FROM role";
-                                            $result = $connect->query($role_sql);
-
-                                            if (!$result) {
-                                                echo "Invalid query: " . $connect->error;
-                                            }
-
-                                            $role_row = $connect->fetch_assoc();
-                                            echo $role_row['role_name'];
-                                        ?>
-                                        </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $role_row['role_name'] ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <button disabled class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium  text-gray-400 bg-gray-100 cursor-not-allowed">
                                             Delete User
                                         </button>
                                     </td>
                                 </tr>
+                                <?php } ?>
+
+                                <?php 
+                                    require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
+
+                                    $users_sql = "SELECT * FROM users WHERE `role_id` = 1";
+                                    $result = $connect->query($users_sql);
+
+                                    if (!$result) {
+                                        echo "Invalid query: " . $connect->error;
+                                    }
+
+                                    foreach ($result as $user) {
+                                        $role_sql = "SELECT `role_name` FROM `role` WHERE `role_id` = " . $user['role_id'];
+                                        $role_result = $connect->query($role_sql);
+
+                                            if (!$role_result) {
+                                                echo "Invalid query: " . $connect->error;
+                                            }
+
+                                            $role_row = $role_result->fetch_assoc();
+                                ?>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $user['user_name'] . " " . $user['user_last_name'] ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $user['user_email'] ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $user['user_address'] ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $role_row['role_name'] ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="../public/bin/deleteUser.php" class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium  text-black bg-white hover:bg-red-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                            Delete User
+                                        </a>
+                                    </td>
+                                </tr>
+                                <!-- <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $user['user_name'] . $user['user_last_name'] ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $user['user_email'] ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $role_row['role_name'] ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <button disabled class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium  text-gray-400 bg-gray-100 cursor-not-allowed">
+                                            Delete User
+                                        </button>
+                                    </td>
+                                </tr> -->
                                 <?php } ?>
                                 <!-- More user rows -->
                             </tbody>
