@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $errorMessage = "Plate name, description, categorie are required";
         }
 
-        $sql = "INSERT INTO `plats`(`nom_plat`, `description`, `type`, `menu_id`) VALUES ('$plate_name','$plate_description','$plate_categorie','$plate_menu')";
+        $sql = "INSERT INTO `plats`(`plat_nom`, `description`, `type`, `menu_id`) VALUES ('$plate_name','$plate_description','$plate_categorie','$plate_menu')";
         $result = $connect->query($sql);
 
         if (!$result) {

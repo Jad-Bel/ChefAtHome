@@ -96,7 +96,7 @@ require "/laragon/www/LA-MICHELINE/public/bin/addMenu.php";
                             </thead>
                             <tbody class="divide-y divide-gray-200">
                                 <?php 
-                                    include "/xampp/htdocs/LA-MICHELINE/public/bin/connect.php";
+                                    include "/laragon/www/LA-MICHELINE/public/bin/connect.php";
 
                                     $data = "SELECT * FROM menu";
                                     $result = $connect->query($data);

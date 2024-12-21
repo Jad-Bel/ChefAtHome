@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$passwrd = "";
+$passwrd = "Hitler20.";
 $database = "lamicheline_db";
                             
 $connect = mysqli_connect($servername, $username, $passwrd, $database);

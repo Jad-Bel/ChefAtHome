@@ -1,16 +1,16 @@
 <?php
-    // include ("../public/bin/connect.php");
+    include ("/laragon/www/LA-MICHELINE/public/bin/connect.php");
 
-    $servername = "localhost";
-    $username = "root";
-    $passwrd = "";
-    $database = "lamicheline_db";
+    // $servername = "localhost";
+    // $username = "root";
+    // $passwrd = "Hitler";
+    // $database = "lamicheline_db";
 
-    $connect = mysqli_connect($servername, $username, $passwrd, $database);
+    // $connect = mysqli_connect($servername, $username, $passwrd, $database);
 
-    if (!$connect) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
+    // if (!$connect) {
+    //     die("Connection failed: " . mysqli_connect_error());
+    // }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -28,7 +28,7 @@
         if (!$result) {
             echo "Invalid query: " . $connect->error;
         } else {
-            header("location: ../index.php");
+            header("location: ../authentification.php");
             exit;        
         }
     }

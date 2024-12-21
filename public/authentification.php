@@ -19,41 +19,7 @@
 </head>
 
 <body class="bg-black text-white ">
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black/90 px-4 py-4">
-        <div id="menu" class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-light">LA MICHELINE</a>
-            <div class="hidden md:flex space-x-8 text-sm">
-                <a href="../public/index.php" class="hover:text-gray-300 transition">Accueil</a>
-                <a href="../public/menu.php" class="hover:text-gray-300 transition">Menu</a>
-                <a href="../public/reservation.php" class="hover:text-gray-300 transition">Réservations</a>
-                <a href="#" class="hover:text-gray-300 transition">Bons cadeaux</a>
-                <a href="#" class="hover:text-gray-300 transition">Le Chef</a>
-                <a href="../public/authentification.php" class="hover:text-gray-300 transition">Sign-up</a>
-            </div>
-            <button id="burger-menu" class="md:hidden">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
-                </svg>
-            </button>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-black/90 py-4">
-            <div class="close-header-btn px-6 w-full text-right cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
-            </div>
-            <div class="flex flex-col items-center space-y-4 text-sm text-left px-10 pt-4">
-                <a href="#" class="hover:text-gray-300 transition">Accueil</a>
-                <a href="#" class="hover:text-gray-300 transition">Menu</a>
-                <a href="#" class="hover:text-gray-300 transition">Réservations</a>
-                <a href="#" class="hover:text-gray-300 transition">Bons cadeaux</a>
-                <a href="#" class="hover:text-gray-300 transition">Le Chef</a>
-                <a href="#" class="hover:text-gray-300 transition">Presse</a>
-            </div>
-        </div>
-    </nav>
+    
     <!-- sign-in-up-forms -->
     <div id="sign-up-form" class="flex flex-col h-screen justify-center items-center bg-zinc-500 min-h-[100vh] pb-5">
            

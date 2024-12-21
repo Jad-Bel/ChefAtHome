@@ -98,7 +98,7 @@
                                     foreach ($result as $value) {
                                 ?>
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap"><?= $value['nom_plat'] ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><?= $value['plat_nom'] ?></td>
                                     <td class="px-6 py-4"><?php 
                                         if (strlen($value['description']) > 5) {
                                             echo substr($value['description'], 0, 5) . "..."; 
