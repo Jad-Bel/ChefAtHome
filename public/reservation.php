@@ -1,3 +1,6 @@
+<?php 
+  require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

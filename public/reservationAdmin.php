@@ -90,7 +90,8 @@
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Menu</th>
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                    <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100">
@@ -115,13 +116,33 @@
                                         $menu = $menu_result->fetch_assoc();
                                         echo $menu['menu_nom'];
                                     ?></td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $reservation['address']?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                        <?php 
+                                            if (strlen($reservation['address']) > 7) {
+                                                echo substr($reservation['address'], 0, 7) . "..."; 
+                                            } else {
+                                                echo $value['address'];
+                                            }
+                                        ?>
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $reservation['reservation_date'] ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                        <?php 
+                                            if ($reservation['status'] == -1) {
+                                                echo "Denied";
+                                            } elseif ($reservation['status'] == 1) {
+                                                echo "Approved";
+                                            } else {
+                                                echo "Waiting for approving";
+                                            }
+                                    
+                                        ?>
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                                        <a href="../public/bin/acceptRes.php?reserv_id=<?php $reservation['reserv_id'] ?>" class="inline-flex items-center px-3 py-1.5 border border-green-400 text-sm font-medium text-black bg-white hover:bg-green-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                        <a href="./bin/acceptRes.php?menu=id=<?php echo$reservation['reserv_id'] ?>" class="inline-flex items-center px-3 py-1.5 border border-green-400 text-sm font-medium text-black bg-white hover:bg-green-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                             Accept
                                         </a>
-                                        <a href="../public/bin/declineRes.php?reserv_id=<?php $reservation['reserv_id'] ?>" class="inline-flex items-center px-3 py-1.5 border border-red-400 text-sm font-medium  text-black bg-white hover:bg-red-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                        <a href="./bin/declineRes.php?menu=id=<?php echo$reservation['reserv_id'] ?>" class="inline-flex items-center px-3 py-1.5 border border-red-400 text-sm font-medium  text-black bg-white hover:bg-red-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                             Decline
                                         </a>
                                     </td>

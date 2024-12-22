@@ -19,17 +19,23 @@
         $adresse = $_POST["adresse"];
         $email = $_POST["email"];
         $password = $_POST["password"];
+        $check_email = "SELECT * FROM users where user_email = $email";
+        $email_result = $connect->query($check_email);
 
-        $sql = "INSERT INTO users (`user_name`, `user_last_name`, `user_email`, `user_password`, `user_address`, `role_id`) 
-        VALUES ('$first_Name', '$last_Name','$email', '$password', '$adresse', '1')";
-        
-        $result = $connect->query($sql);
-        
-        if (!$result) {
-            echo "Invalid query: " . $connect->error;
+        if ($email_result->num_rows > 0) {
+            echo "Email Address already exists";
         } else {
-            header("location: ../authentification.php");
-            exit;        
+            $insert_user = "INSERT INTO users (`user_name`, `user_last_name`, `user_email`, `user_password`, `user_address`, `role_id`) 
+            VALUES ('$first_Name', '$last_Name','$email', '$password', '$adresse', '1')";
+            
+            $result = $connect->query($insert_user);
+            
+            if (!$result) {
+                echo "Invalid query: " . $connect->error;
+            } else {
+                header("location: ../authentification.php");
+                exit;        
+            }
         }
     }
 ?>
