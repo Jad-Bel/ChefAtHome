@@ -1,5 +1,6 @@
 <?php 
 require "/laragon/www/LA-MICHELINE/public/bin/addMenu.php";
+session_start();
 ?>
 
 <!DOCTYPE html>

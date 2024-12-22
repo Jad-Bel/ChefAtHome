@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    include "/laragon/www/LA-MICHELINE/public/bin/connect.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

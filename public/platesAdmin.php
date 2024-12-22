@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     require "/laragon/www/LA-MICHELINE/public/bin/addPlate.php";
     require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
 ?>

@@ -8,10 +8,12 @@
 
         $sql = "SELECT * FROM users WHERE user_email = '$email' AND user_password = '$password'";
         $result_user = $connect->query($sql);
-        var_dump($result_user);
+        // var_dump($result_user);  
 
         if ($result_user->num_rows > 0) {
+            session_start();
             $user = $result_user->fetch_assoc();
+            $_SERVER['email'] = $user['email'];
             $user_role_id = $user['role_id'];
             echo "5";
 

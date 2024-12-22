@@ -1,5 +1,6 @@
 <?php 
     require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
+    session_start();
 ?>
 <!DOCTYPE html>
 <HTML lang="en">
