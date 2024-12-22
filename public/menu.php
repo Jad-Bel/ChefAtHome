@@ -1,6 +1,6 @@
 <?php 
-    session_start();
     include "/laragon/www/LA-MICHELINE/public/bin/connect.php";
+    require "/laragon/www/LA-MICHELINE/public/bin/session_check.php";
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
                 <a href="../public/reservation.php" class="hover:text-gray-300 transition">Réservations</a>
                 <a href="#" class="hover:text-gray-300 transition">Bons cadeaux</a>
                 <a href="#" class="hover:text-gray-300 transition">Le Chef</a>
-                <a href="../public/authentification.php" class="hover:text-gray-300 transition">Sign-up</a>
+                <a href="../public/bin/logout.php" class="hover:text-gray-300 transition">log Out</a>
             </div>
             <button id="burger-menu" class="md:hidden">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"

@@ -1,6 +1,6 @@
 <?php 
   require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
-  session_start();
+  require "/laragon/www/LA-MICHELINE/public/bin/session_check.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,7 @@
                 <a href="../public/reservation.php" class="hover:text-gray-300 transition">Réservations</a>
                 <a href="#" class="hover:text-gray-300 transition">Bons cadeaux</a>
                 <a href="#" class="hover:text-gray-300 transition">Le Chef</a>
-                <a href="../public/authentification.php" class="hover:text-gray-300 transition">Sign up</a>
+                <a href="../public/bin/logout.php" class="hover:text-gray-300 transition">log Out</a>
             </div>
             <button id="burger-menu" class="md:hidden">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -82,32 +82,39 @@
       <div class="w-full mx-auto px-4 py-24 bg-[#f8f7ff] text-black">
         <!-- Reservation Form -->
         <div class="bg-[#f8f7ff] p-8 rounded-lg shadow-sm max-w-xl mx-auto text-black">
-          <div class="text-center mb-6">
-            <h2 class="text-xl font-medium mb-4">La Micheline</h2>
-            <select class="px-3 py-2 border rounded bg-white">
-              <option>FR</option>
-            </select>
-          </div>
+  <div class="text-center mb-6">
+    <h2 class="text-xl font-medium mb-4">La Micheline</h2>
+  </div>
+
+  <!-- Form Section -->
+  <form action="../public/bin/bookRes.php" method="POST">
+    <div class="grid grid-cols-1 gap-4 mb-4">
+      <!-- Select Menu -->
+      <div>
+        <select class="w-full px-3 py-2 border rounded bg-white">
+          <option value="" name="reservMenu" disabled selected>Choisir un menu</option>
+          <option value="menu1">Menu 1</option>
+          <option value="menu2">Menu 2</option>
+          <option value="menu3">Menu 3</option>
+        </select>
+      </div>
       
-          <div class="grid grid-cols-3 gap-4 mb-4">
-            <div class="relative">
-              <input type="number" value="2" min="1" class="w-full px-3 py-2 border rounded" placeholder="Pers.">
-              <span class="absolute right-3 top-2 text-gray-400">Pers.</span>
-            </div>
-            <input type="date" class="px-3 py-2 border rounded" placeholder="Aujourd'hui">
-            <input type="time" value="19:00" class="px-3 py-2 border rounded">
-          </div>
-      
-          <button class="w-full bg-teal-700 text-white py-3 rounded hover:bg-teal-800 transition-colors">
-            TROUVER UNE TABLE
-          </button>
-      
-          <p class="text-sm text-teal-700 mt-4">
-            <span class="inline-block w-2 h-2 bg-teal-700 rounded-full mr-2"></span>
-            Pour des questions d'organisation, nous vous remercions de bien vouloir respecter votre horaire de réservation :)
-          </p>
-        </div> 
-      </div>  
+      <!-- Select Date -->
+      <input type="date" name="reservDate" class="px-3 py-2 border rounded" placeholder="Date de réservation">
+    </div>
+    <div class="w-full bg-teal-700 text-white py-3 rounded hover:bg-teal-800 transition-colors text-center">
+      <a href="" class="">
+        TROUVER UNE TABLE
+      </a>
+    </div>
+  </form>
+
+  <p class="text-sm text-teal-700 mt-4">
+    <span class="inline-block w-2 h-2 bg-teal-700 rounded-full mr-2"></span>
+    Pour des questions d'organisation, nous vous remercions de bien vouloir respecter votre horaire de réservation :)
+  </p>
+</div>
+
     </section>
 
        <!-- footer -->
