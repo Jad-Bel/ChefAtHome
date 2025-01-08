@@ -20,10 +20,10 @@
         $menu = intval($_POST['reservMenu']);
         $date = $_POST['reservDate'];
 
-        $user_id = intval($_GET['user_id']);
-        $user_name = $_GET['user_name'];
-        $user_lastName = $_GET['user_last_name'];
-        $user_address = $_GET['user_address'];
+        $user_id = intval($_POST['user_id']);
+        $user_name = $_POST['user_name'];
+        $user_lastName = $_POST['user_last_name'];
+        $user_address = $_POST['user_address'];
 
         if (empty($menu) || empty($date)|| empty($user_id) || empty($user_name) || empty($user_lastName) || empty($user_address)) {
             $errorMessage = "All fields are required";
@@ -37,6 +37,9 @@
             echo "Invalid query: " . $connect->error;
         } else {
             $succesMessage = "Reservation affected";
+            header ("location: ../reservation.php");
+            exit;
         }
+
     }
 ?>

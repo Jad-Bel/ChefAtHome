@@ -1,6 +1,7 @@
 <?php 
   require "/laragon/www/LA-MICHELINE/public/bin/connect.php";
   require "/laragon/www/LA-MICHELINE/public/bin/session_check.php";
+  require "/laragon/www/LA-MICHELINE/public/bin/bookRes.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,6 +85,21 @@
         <div class="bg-[#f8f7ff] p-8 rounded-lg shadow-sm max-w-xl mx-auto text-black">
   <div class="text-center mb-6">
     <h2 class="text-xl font-medium mb-4">La Micheline</h2>
+    <?php 
+        if (!empty($errorMessage)) {
+          echo "
+              <div class=\"bg-red-500 flex items-center justify-center border-2 border-red-300 rounded-lg p-1\">
+              <strong>$errorMessage</strong>
+              </div>
+          ";
+        } elseif (!empty($succesMessage)) {
+          echo "
+          <div class=\"bg-green-500 mb-4 flex items-center justify-center border-2 border-green-300 rounded-lg p-1\">
+              <strong>$succesMessage</strong>
+          </div>
+          ";
+        }
+    ?>
   </div>
 
   <!-- Form Section -->
@@ -93,9 +109,16 @@
       <div>
         <select class="w-full px-3 py-2 border rounded bg-white">
           <option value="" name="reservMenu" disabled selected>Choisir un menu</option>
-          <option value="menu1">Menu 1</option>
-          <option value="menu2">Menu 2</option>
-          <option value="menu3">Menu 3</option>
+            <?php 
+            /*  $menu_result = $connect->query("SELECT * FROM menu");
+              foreach ($menu_row = $menu_result as $menu) {
+                echo "<option value='" . $menu_row['menu_id'] . "'>" . $menu_row['menu_name'] . "</option>";
+              } */
+              $menu_result = $connect->query("SELECT * FROM menu");
+              while ($menu_row = $menu_result->fetch_assoc()) {
+                echo "<option value='" . $menu_row['menu_id'] . "'>" . $menu_row['menu_nom'] . "</option>";
+              }
+            ?>
         </select>
       </div>
       
@@ -103,9 +126,9 @@
       <input type="date" name="reservDate" class="px-3 py-2 border rounded" placeholder="Date de réservation">
     </div>
     <div class="w-full bg-teal-700 text-white py-3 rounded hover:bg-teal-800 transition-colors text-center">
-      <a href="" class="">
+      <button class="">
         TROUVER UNE TABLE
-      </a>
+            </button>
     </div>
   </form>
 

@@ -1,7 +1,7 @@
 
 <?php 
-// include "../public/bin/connect.php";
-// include "../public/bin/signup.php";
+include "../public/bin/connect.php";
+include "../public/bin/signup.php";
 ?>
 
 <!DOCTYPE html>

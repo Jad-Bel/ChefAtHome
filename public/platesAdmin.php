@@ -13,36 +13,6 @@
 </head>
 <body class="bg-gray-50">
 
-    <nav class="static text-white w-full z-50 bg-black/90 px-4 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-light">LA MICHELINE</a>
-            <div class="hidden md:flex space-x-8 text-sm">
-                <a href="../public/index.php" class="hover:text-gray-300 transition">Accueil</a>
-                <a href="../public/menu.php" class="hover:text-gray-300 transition">Menu</a>
-                <a href="../public/reservation.php" class="hover:text-gray-300 transition">Réservations</a>
-                <a href="#" class="hover:text-gray-300 transition">Bons cadeaux</a>
-                <a href="#" class="hover:text-gray-300 transition">Le Chef</a>
-                <a href="../public/bin/logout.php" class="hover:text-gray-300 transition">log Out</a>
-            </div>
-            <button id="burger-menu" class="md:hidden">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-black/90 py-4">
-            <div class="flex flex-col items-center space-y-4 text-sm">
-                <a href="#" class="hover:text-gray-300 transition">Accueil</a>
-                <a href="#" class="hover:text-gray-300 transition">Menu</a>
-                <a href="#" class="hover:text-gray-300 transition">Réservations</a>
-                <a href="#" class="hover:text-gray-300 transition">Bons cadeaux</a>
-                <a href="#" class="hover:text-gray-300 transition">Le Chef</a>
-                <a href="#" class="hover:text-gray-300 transition">Presse</a>
-            </div>
-        </div>
-    </nav>
-
     <div class="min-h-screen flex">
         <aside class="w-64 bg-white border-r">
             <div class="p-6">
@@ -180,40 +150,8 @@
         </main>
     </div>
 
-        <!-- Footer -->
-        <footer class="bg-black text-white py-16">
-            <div class="max-w-7xl mx-auto px-4">
-                <div class="grid md:grid-cols-3 gap-12 text-center">
-                    <!-- Address -->
-                    <div>
-                        <h4 class="text-lg mb-4">ADRESSE</h4>
-                        <p class="text-sm">Avenue de la Gare des</p>
-                        <p class="text-sm">Eaux-Vives 3, 1207</p>
-                        <p class="text-sm">Genève</p>
-                    </div>
+    <!-- Footer -->
     
-                    <!-- Hours -->
-                    <div>
-                        <h4 class="text-lg mb-4">HORAIRES</h4>
-                        <p class="text-sm">Lundi et Dimanche : Fermé</p>
-                        <p class="text-sm">Mardi au Samedi : 12:00 - 14:00 / 19:00 - 22:00</p>
-                    </div>
-    
-                    <!-- Contact -->
-                    <div>
-                        <h4 class="text-lg mb-4">CONTACT</h4>
-                        <p class="text-sm">Tél : 022 840 03 38</p>
-                        <p class="text-sm">Mail : info@lamicheline.ch</p>
-                    </div>
-                </div>
-    
-                <!-- Certifications -->
-                <div class="flex justify-center space-x-8 mt-12">
-                    <span class="text-white/70">Guide MICHELIN</span>
-                    <span class="text-white/70">Gault&Millau</span>
-                </div>
-            </div>
-        </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
